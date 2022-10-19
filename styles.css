@@ -168,6 +168,9 @@ aside {
     box-sizing: border-box;
     position: absolute;
     right: 0;
+    padding: 0 0 24px 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 /* ShoppingCart */
