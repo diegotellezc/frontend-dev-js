@@ -70,6 +70,7 @@ nav {
 }
 .navbar-shopping-cart {
     position: relative;
+    cursor: pointer;
 }
 .navbar-shopping-cart div {
     width: 16px;
@@ -171,7 +172,10 @@ aside {
 
 /* ShoppingCart */
 #shoppingCartContainer {
-    padding: 0 24px;
+    padding: 24px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background: var(--white);
 }
 .title-container {
     display: flex;

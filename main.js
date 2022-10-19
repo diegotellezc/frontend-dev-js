@@ -1,14 +1,17 @@
 const menuEmail = document.querySelector(".navbar-email")
 const desktopMenu = document.querySelector(".desktop-menu")
 const menuHamIcon = document.querySelector(".menu")
+const productDetailCloseIcon = document.querySelector(".product-detail-close")
 const mobileMenu = document.querySelector(".mobile-menu")
 const menuCarritoIcon = document.querySelector(".navbar-shopping-cart")
 const shoppingCartContainer = document.querySelector("#shoppingCartContainer")
+const productDetailContainer = document.querySelector("#productDetail")
 const cardsContainer = document.querySelector(".cards-container")
 
 menuEmail.addEventListener("click", toggleDesktopMenu)
 menuHamIcon.addEventListener("click", toggleMobileMenu)
-menuCarritoIcon.addEventListener("click", toggleAside)
+menuCarritoIcon.addEventListener("click", toggleCarritoAside)
+productDetailCloseIcon.addEventListener("click", closeProductDetailAside)
 
 function toggleDesktopMenu() {
     const IsAsideClosed = shoppingCartContainer.classList.contains("inactive")
@@ -17,6 +20,7 @@ function toggleDesktopMenu() {
         shoppingCartContainer.classList.add("inactive")
     }
     
+    productDetailContainer.classList.add("inactive")
     desktopMenu.classList.toggle("inactive")
 }
 
@@ -27,10 +31,11 @@ function toggleMobileMenu() {
         shoppingCartContainer.classList.add("inactive")
     }
 
+    productDetailContainer.classList.add("inactive")
     mobileMenu.classList.toggle("inactive")
 }
 
-function toggleAside() {
+function toggleCarritoAside() {
     const IsMobileMenuClosed = mobileMenu.classList.contains("inactive")
     const IsDesktopMenuClosed = desktopMenu.classList.contains("inactive")
     
@@ -40,12 +45,58 @@ function toggleAside() {
         desktopMenu.classList.add("inactive")
     }
 
+    const isProductDetailClosed = productDetailContainer.classList.contains("inactive")
+    
+    if (!isProductDetailClosed) {
+        productDetailContainer.classList.add("inactive")
+    } 
+
     shoppingCartContainer.classList.toggle("inactive")
     
     
 }
 
+function openProductDetailAside() {
+    shoppingCartContainer.classList.add("inactive")
+    productDetailContainer.classList.remove("inactive")
+}
+
+function closeProductDetailAside() {
+    productDetailContainer.classList.add("inactive")
+    desktopMenu.classList.add("inactive")
+}
+
 const productList = []
+productList.push({
+    name: "bike",
+    price: 120,
+    image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+productList.push({
+    name: "Television",
+    price: 220,
+    image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+productList.push({
+    name: "Laptop",
+    price: 620,
+    image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+productList.push({
+    name: "bike",
+    price: 120,
+    image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+productList.push({
+    name: "Television",
+    price: 220,
+    image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+productList.push({
+    name: "Laptop",
+    price: 620,
+    image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
 productList.push({
     name: "bike",
     price: 120,
@@ -69,6 +120,7 @@ function renderProducts(arr) {
     
         const productImg = document.createElement("img")
         productImg.setAttribute("src", product.image)
+        productImg.addEventListener("click", openProductDetailAside)
     
         const productInfo = document.createElement("div")
         productInfo.classList.add("product-info")
